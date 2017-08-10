@@ -50,7 +50,8 @@ class Root extends Component {
 
     _onViewportChange(viewport) {
         this.setState({
-            viewport: {...this.state.viewport, ...viewport}
+            viewport: {...this.state.viewport, ...viewport},
+            hoverInfo: null
         });
     }
 
@@ -58,7 +59,6 @@ class Root extends Component {
         const hoverInfo = info;
         if (hoverInfo !== this.state.hoverInfo) {
             this.setState({hoverInfo});
-            console.log(hoverInfo.object);
         }
     }
 
