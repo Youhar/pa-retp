@@ -2,6 +2,7 @@
 World Bank Group - Open-data platform on the Pan-Arab Regional Energy Trade Program
 
 Based on [deck.gl](http://deck.gl)
+
 Hosted on [energydata.info](https://energydata.info), an open data and analytics platform for a sustainable energy future (see [Github repo](https://github.com/energy-data/energydata.info))
 
 ### Usage
