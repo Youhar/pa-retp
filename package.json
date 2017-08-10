@@ -1,4 +1,14 @@
 {
+  "name": "pa-retp",
+  "author": "World Bank Group",
+  "contributors": [
+    "Beltaifa, Haroun <hbeltaifa@worldbank.org>"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/youhar/pa-retp.git"
+  },
   "scripts": {
     "start-local": "webpack-dev-server --env.local --progress --hot --port 3030 --open",
     "start": "webpack-dev-server --progress --hot --port 3030 --open"
@@ -13,6 +23,7 @@
   },
   "devDependencies": {
     "buble-loader": "^0.4.0",
+    "dotenv": "^4.0.0",
     "webpack": "^2.2.0",
     "webpack-dev-server": "^2.2.0"
   }

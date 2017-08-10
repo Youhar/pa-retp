@@ -7,7 +7,7 @@ import DeckGLOverlay from './deckgl-overlay.js';
 import {json as requestJson} from 'd3-request';
 
 // Set your mapbox token here
-const MAPBOX_TOKEN = "pk.eyJ1IjoieW91aGFyIiwiYSI6ImNqM294aDZneDAwZ3ozMW82bWxxNGk4eTMifQ.MAVwUeKB-xqbVTBFI3-MjA"; // eslint-disable-line
+const MAPBOX_TOKEN = process.env.MAPBOX_ACCESS_TOKEN; // eslint-disable-line
 
 // Source data GeoJSON
 const DATA_URL = 'https://energydata.info/dataset/a021ecbc-6ede-478f-8236-a8a2b093e363/resource/fe3ffd90-ffed-459a-9c52-bd91deb128f4/download/electric-network-mena.geojson'; // eslint-disable-line
