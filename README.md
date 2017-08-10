@@ -3,7 +3,7 @@ World Bank Group - Open-data platform on the Pan-Arab Regional Energy Trade Prog
 
 Hosted on [energydata.info](https://energydata.info), an open data and analytics platform for a sustainable energy future (see [Github repo](https://github.com/energy-data/energydata.info))
 
-Built on [React](ttps://facebook.github.io/react) using [deck.gl](http://deck.gl)
+Built on [React](https://facebook.github.io/react) using [deck.gl](http://deck.gl)
 
 ### Usage
 Copy the content of this folder & Run
