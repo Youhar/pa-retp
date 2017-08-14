@@ -20,12 +20,6 @@ const CONFIG = {
                 options: {
                     objectAssign: 'Object.assign'
                 }
-            },
-            {
-                // Unfortunately, webpack doesn't import library sourcemaps on its own...
-                test: /\.js$/,
-                use: ['source-map-loader'],
-                enforce: 'pre'
             }
         ],
     },
