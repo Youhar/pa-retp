@@ -55,7 +55,7 @@ export default class DeckGLOverlay extends Component {
                 if(f.properties.nodeType === "city") return [255, 153, 51];
                 else if(f.properties.nodeType === "plant") return [255, 102, 102];
                 else if(f.properties.nodeType === "dam") return [51, 153, 255];
-                else if(f.properties.nodeType === "town") return [255, 153, 51];
+                else if(f.properties.nodeType === "town") return [102, 102, 255];
             },
             getLineWidth: f => {
                 if(f.properties.lineType === "triple") return 30 * (viewport.maxZoom - viewport.zoom) * (viewport.maxZoom - viewport.zoom);

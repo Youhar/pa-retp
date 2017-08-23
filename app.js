@@ -16,7 +16,7 @@ const DATA_URL = 'https://energydata.info/dataset/a021ecbc-6ede-478f-8236-a8a2b0
 
 const colorScale = r => [r * 255, 255 * (1 - r), 255 * (r - 0.5) * (r - 0.5)];
 
-class Root extends Component {
+class ElectricNetworkGL extends Component {
 
     constructor(props) {
         super(props);
@@ -88,4 +88,4 @@ class Root extends Component {
     }
 }
 
-render(<Root />, document.getElementById('canvas').appendChild(document.createElement('div')));
+render(<ElectricNetworkGL />, document.getElementById('canvas').appendChild(document.createElement('div')));
