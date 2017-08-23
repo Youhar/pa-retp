@@ -1,0 +1,147 @@
+$primary: #00ADE6;
+$secondary: #05E3D5;
+$black: #041725;
+$black-20: #213746;
+$black-40: #5A666D;
+$white: #EDEDED;
+$white-40: #8D9BA3;
+
+.tooltip {
+  position: absolute;
+  padding: 4px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  max-width: 300px;
+  font-size: 10px;
+  z-index: 9;
+  pointer-events: none;
+}
+.options-panel {
+  width: 284px;
+  background: #fff;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.15);
+  margin: 24px;
+  padding: 12px 24px;
+  outline: none;
+
+  hr {
+    margin: 12px -24px;
+  }
+  .source-link {
+    text-align: right;
+    margin-top: 8px;
+
+    a {
+      font-weight: bold;
+      color: $black-40;
+      font-size: 11px;
+    }
+  }
+  .input {
+    position: relative;
+    width: 100%;
+
+    >* {
+      vertical-align: middle;
+      white-space: nowrap;
+    }
+    label {
+      display: inline-block;
+      width: 40%;
+      margin-right: 10%;
+      color: $black-40;
+      margin-bottom: 4px;
+    }
+    input, a {
+      font-size: 0.9em;
+      display: inline-block;
+      padding: 0 4px;
+      width: 50%;
+      height: 20px;
+      line-height: 1.833;
+    }
+    input {
+      border: solid 1px #ccc;
+
+      &:disabled {
+        background: $white;
+      }
+      &[type="checkbox"] {
+        height: auto;
+      }
+    }
+
+    .tooltip {
+      left: 50%;
+      top: 24px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 200ms;
+    }
+    &:hover .tooltip {
+      opacity: 1;
+    }
+  }
+  h3 {
+    font-size: 1.2em;
+    font-weight: 500;
+    margin: 8px 0;
+  }
+
+  a {
+    display: inline;
+  }
+
+  p {
+    margin-bottom: 16px;
+  }
+  .legend {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+  }
+}
+
+.demo {
+  position: relative;
+  overflow: hidden !important;
+  height: 100vh;
+  transition: height 600ms ease-in;
+}
+
+@media (max-width: 576px) {
+  .options-panel {
+    width: 100%;
+    margin: 0;
+  }
+  .options-panel:not(.focus) {
+    cursor: pointer;
+    >div > *, hr, .input {
+      display: none;
+    }
+    >div:before {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      color: $white-40;
+      font-size: 24px;
+      content: "\e906";
+    }
+    h3 {
+      display: block;
+    }
+  }
+  .tooltip.interactive {
+    border: solid 4px transparent;
+    margin: -4px;
+    background: $white;
+    color: $black;
+    pointer-events: all;
+    width: 240px;
+    overflow-y: auto;
+
+    p {
+      display: block;
+    }
+  }
+}

@@ -48,8 +48,8 @@ export default class DeckGLOverlay extends Component {
             wireframe: true,
             fp64: true,
             getRadius: f => {
-                if(f.properties.nodeType === "city") return 3000;
-                else return 1000
+                if(f.properties.nodeType === "city") return 50 * (viewport.maxZoom - viewport.zoom) * (viewport.maxZoom - viewport.zoom);
+                else return 30 * (viewport.maxZoom - viewport.zoom) * (viewport.maxZoom - viewport.zoom)
             },
             getFillColor: f => {
                 if(f.properties.nodeType === "city") return [255, 153, 51];
@@ -58,14 +58,18 @@ export default class DeckGLOverlay extends Component {
                 else if(f.properties.nodeType === "town") return [255, 153, 51];
             },
             getLineWidth: f => {
-                if(f.properties.lineType === "triple") return 1000;
-                else if(f.properties.lineType === "double")  return 800;
-                else if(f.properties.lineType === "single") return 400
+                if(f.properties.lineType === "triple") return 30 * (viewport.maxZoom - viewport.zoom) * (viewport.maxZoom - viewport.zoom);
+                else if(f.properties.lineType === "double")  return 20 * (viewport.maxZoom - viewport.zoom) * (viewport.maxZoom - viewport.zoom);
+                else if(f.properties.lineType === "single") return 10 * (viewport.maxZoom - viewport.zoom) * (viewport.maxZoom - viewport.zoom)
             },
             getLineColor: f => colorScale(f.properties.transmissionPower/600),
             lightSettings: LIGHT_SETTINGS,
             pickable: Boolean(this.props.onHover),
-            onHover: this.props.onHover
+            onHover: this.props.onHover,
+            updateTriggers: {
+                getRadius: viewport.zoom,
+                getLineWidth: viewport.zoom
+            }
         });
 
         return (

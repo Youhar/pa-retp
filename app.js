@@ -6,6 +6,8 @@ import DeckGLOverlay from './deckgl-overlay.js';
 
 import {json as requestJson} from 'd3-request';
 
+import './stylesheets/main.scss';
+
 // Set your mapbox token here
 const MAPBOX_TOKEN = process.env.MAPBOX_ACCESS_TOKEN; // eslint-disable-line
 
@@ -86,4 +88,4 @@ class Root extends Component {
     }
 }
 
-render(<Root />, document.body.appendChild(document.createElement('div')));
+render(<Root />, document.getElementById('canvas').appendChild(document.createElement('div')));

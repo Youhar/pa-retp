@@ -16,15 +16,20 @@
   "dependencies": {
     "d3-request": "^1.0.5",
     "deck.gl": "^4.1.0",
-    "luma.gl": "^4.0.0",
+    "luma.gl": "^4.0.1",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
-    "react-map-gl": "^3.0.0"
+    "react-map-gl": "^3.0.4"
   },
   "devDependencies": {
+    "autoprefixer-loader": "^3.2.0",
     "buble-loader": "^0.4.0",
+    "css-loader": "^0.26.1",
     "dotenv": "^4.0.0",
+    "node-sass": "^4.3.0",
+    "sass-loader": "^4.1.1",
+    "style-loader": "^0.13.2",
     "webpack": "^2.2.0",
-    "webpack-dev-server": "^2.2.0"
+    "webpack-dev-server": "^2.7.1"
   }
 }

@@ -20,6 +20,9 @@ const CONFIG = {
                 options: {
                     objectAssign: 'Object.assign'
                 }
+            }, {
+                test: /\.scss$/,
+                loaders: ['style-loader', 'css-loader', 'sass-loader', 'autoprefixer-loader']
             }
         ],
     },
