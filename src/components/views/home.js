@@ -1,12 +1,8 @@
-/* global window,document */
 import React, {Component} from 'react';
-import {render} from 'react-dom';
 import MapGL from 'react-map-gl';
-import DeckGLOverlay from './deckgl-overlay.js';
+import DeckGLOverlay from '../deckgl-overlays/deckgl-overlay.js';
 
 import {json as requestJson} from 'd3-request';
-
-import './stylesheets/main.scss';
 
 // Set your mapbox token here
 const MAPBOX_TOKEN = process.env.MAPBOX_ACCESS_TOKEN; // eslint-disable-line
@@ -16,7 +12,7 @@ const DATA_URL = 'https://energydata.info/dataset/a021ecbc-6ede-478f-8236-a8a2b0
 
 const colorScale = r => [r * 255, 255 * (1 - r), 255 * (r - 0.5) * (r - 0.5)];
 
-class ElectricNetworkGL extends Component {
+export default class ElectricNetworkGL extends Component {
 
     constructor(props) {
         super(props);
@@ -87,5 +83,3 @@ class ElectricNetworkGL extends Component {
         );
     }
 }
-
-render(<ElectricNetworkGL />, document.getElementById('canvas').appendChild(document.createElement('div')));
