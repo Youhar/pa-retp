@@ -14,23 +14,31 @@
     "start": "webpack-dev-server --progress --hot --port 3030 --open"
   },
   "dependencies": {
-    "d3-request": "^1.0.5",
-    "deck.gl": "^4.1.0",
-    "luma.gl": "^4.0.1",
-    "react": "^15.4.1",
-    "react-dom": "^15.4.1",
-    "react-map-gl": "^3.0.4",
-    "react-router-dom": "^4.2.0"
+    "d3-request": "^1.0.6",
+    "deck.gl": ">=5.2.0-alpha.7",
+    "luma.gl": "^5.2.0",
+    "npm": "^6.0.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-map-gl": "^3.2.0",
+    "react-router-dom": "^4.2.2"
   },
   "devDependencies": {
     "autoprefixer-loader": "^3.2.0",
-    "buble-loader": "^0.4.0",
-    "css-loader": "^0.26.1",
+    "babel-cli": "^6.24.0",
+    "babel-core": "^6.25.0",
+    "babel-eslint": "^7.0.0",
+    "babel-loader": "^7.0.0",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-preset-es2015": "^6.22.0",
+    "babel-preset-react": "^6.22.0",
+    "babel-preset-stage-2": "^6.22.0",
+    "css-loader": "^0.28.11",
     "dotenv": "^4.0.0",
-    "node-sass": "^4.3.0",
+    "node-sass": "^4.9.0",
     "sass-loader": "^4.1.1",
     "style-loader": "^0.13.2",
-    "webpack": "^2.2.0",
-    "webpack-dev-server": "^2.7.1"
+    "webpack": "^2.6.1",
+    "webpack-dev-server": "^2.11.2"
   }
 }
