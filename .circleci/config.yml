@@ -1,0 +1,47 @@
+# Javascript Node CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-javascript/ for more details
+#
+version: 2.1
+
+orbs:
+  node: circleci/node@0.0.2
+
+jobs:
+  unit-tests:
+    docker:
+      # specify the version you desire here
+      - image: circleci/node:10
+
+      # Specify service dependencies here if necessary
+      # CircleCI maintains a library of pre-built images
+      # documented at https://circleci.com/docs/2.0/circleci-images/
+      # - image: circleci/mongo:3.4.4
+
+    working_directory: ~/pa-retp
+
+    environment:
+      TEST_RESULTS: /tmp/test-results
+
+    steps:
+      - checkout
+      - node/with-cache:
+          dir: ~/pa-retp/node_modules/
+          steps:
+            - run:
+                name: install npm packages
+                command: npm install
+      - run:
+          name: Run tests with JUnit as reporter
+          command: npm run ci:test -- --reporters=default --reporters=jest-junit
+          environment:
+            JEST_JUNIT_OUTPUT: '/tmp/test-results/jest-test-results.xml'
+      - store_test_results:
+          path: /tmp/test-results
+      - store_artifacts:
+          path: /tmp/test-results
+workflows:
+  version: 2
+  test-deploy:
+    jobs:
+      - unit-tests
