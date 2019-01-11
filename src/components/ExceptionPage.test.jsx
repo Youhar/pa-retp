@@ -25,7 +25,7 @@ describe('Testing ExceptionPage component', () => {
         expect(
             wrapper
                 .children()
-                .find('a')
+                .find('button')
                 .prop('href')
         ).toBe('/')
     })
@@ -36,7 +36,7 @@ describe('Testing ExceptionPage component', () => {
         expect(
             wrapper
                 .children()
-                .find('a')
+                .find('button')
                 .prop('href')
         ).toBe('https://bigblue.co/contact')
     })
@@ -47,7 +47,7 @@ describe('Testing ExceptionPage component', () => {
         expect(
             wrapper
                 .children()
-                .find('a')
+                .find('button')
                 .prop('href')
         ).toBe('/')
     })
@@ -58,7 +58,7 @@ describe('Testing ExceptionPage component', () => {
         expect(
             wrapper
                 .children()
-                .find('a')
+                .find('button')
                 .prop('href')
         ).toBe('/')
     })

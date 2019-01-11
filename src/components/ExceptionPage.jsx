@@ -81,8 +81,8 @@ const ExceptionPage = props => {
                     justifyContent: 'center'
                 }}
             >
-                <h2>{title}</h2>
-                <h4>{desc}</h4>
+                <h1>{title}</h1>
+                <h3>{desc}</h3>
                 {actions}
             </div>
         </div>

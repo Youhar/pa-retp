@@ -43,6 +43,6 @@ describe('ErrorBoundary component', () => {
         )
         w.update()
         expect(w.state('error')).toBeTruthy()
-        expect(w.find('Button').length).toBe(1)
+        expect(w.find('button').length).toBe(1)
     })
 })
