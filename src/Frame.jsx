@@ -1,6 +1,7 @@
 import React from 'react'
 import { Redirect, Route, Switch } from 'react-router-dom'
 import { ElectricGrid } from './electric-grid/ElectricGrid'
+import { Home } from './home'
 
 //TODO
 //import Gas grid map from './gas-grid'
@@ -10,10 +11,22 @@ import { ElectricGrid } from './electric-grid/ElectricGrid'
 class Frame extends React.Component {
     render() {
         return (
-            <div style={{ height: '100vh', padding: '24px' }}>
+            <div
+                className="bp3-dark"
+                style={{
+                    height: '100vh',
+                    padding: '24px',
+                    backgroundColor: '#30404d'
+                }}
+            >
                 {/* <Menu/> */}
                 <Switch>
-                    <Route exact={true} path="/" component={ElectricGrid} />
+                    <Route
+                        exact={true}
+                        path="/electric-grid"
+                        component={ElectricGrid}
+                    />
+                    <Route exact={true} path="/" component={Home} />
                     <Redirect to="/" />
                 </Switch>
                 {/* <Footer/> */}
