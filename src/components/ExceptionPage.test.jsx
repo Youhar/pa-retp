@@ -1,4 +1,5 @@
 import { mount, shallow } from 'enzyme'
+import { createMemoryHistory } from 'history'
 import * as React from 'react'
 import { ExceptionPage } from './ExceptionPage'
 
@@ -20,46 +21,64 @@ describe('Testing ExceptionPage component', () => {
     })
 
     test('Unauthorized component mounts in a full DOM', () => {
-        const wrapper = mount(<ExceptionPage type={401} />)
-        expect(wrapper.find('h1').text()).toBe('401')
+        const history = createMemoryHistory()
+        const wrapper = mount(<ExceptionPage type={401} history={history} />)
+        expect(wrapper.find('h4').text()).toBe('401')
         expect(
             wrapper
                 .children()
                 .find('button')
-                .prop('href')
-        ).toBe('/')
+                .find('.bp3-button-text')
+                .text()
+        ).toBe('Home')
+        wrapper.find('button').simulate('click')
+        expect(history.location.pathname).toBe('/')
     })
 
     test('Deactivated component mounts in a full DOM', () => {
-        const wrapper = mount(<ExceptionPage type={403} />)
-        expect(wrapper.find('h1').text()).toBe('403')
+        const history = createMemoryHistory()
+        const wrapper = mount(<ExceptionPage type={403} history={history} />)
+        expect(wrapper.find('h4').text()).toBe('403')
         expect(
             wrapper
                 .children()
                 .find('button')
-                .prop('href')
-        ).toBe('https://bigblue.co/contact')
+                .find('.bp3-button-text')
+                .text()
+        ).toBe('Contact Support')
+        wrapper.find('button').simulate('click')
+        expect(history.location.pathname).toBe('/contact')
     })
 
     test('NotFound component mounts in a full DOM', () => {
-        const wrapper = mount(<ExceptionPage type={404} />)
-        expect(wrapper.find('h1').text()).toBe('404')
+        const history = createMemoryHistory({
+            initialEntries: ['/previous', '/']
+        })
+        const wrapper = mount(<ExceptionPage type={404} history={history} />)
+        expect(wrapper.find('h4').text()).toBe('404')
         expect(
             wrapper
                 .children()
                 .find('button')
-                .prop('href')
-        ).toBe('/')
+                .find('.bp3-button-text')
+                .text()
+        ).toBe('Go back')
+        wrapper.find('button').simulate('click')
+        expect(history.location.pathname).toBe('/previous')
     })
 
     test('Internal component mounts in a full DOM', () => {
-        const wrapper = mount(<ExceptionPage type={500} />)
-        expect(wrapper.find('h1').text()).toBe('500')
+        const history = createMemoryHistory()
+        const wrapper = mount(<ExceptionPage type={500} history={history} />)
+        expect(wrapper.find('h4').text()).toBe('500')
         expect(
             wrapper
                 .children()
                 .find('button')
-                .prop('href')
-        ).toBe('/')
+                .find('.bp3-button-text')
+                .text()
+        ).toBe('Home')
+        wrapper.find('button').simulate('click')
+        expect(history.location.pathname).toBe('/')
     })
 })
