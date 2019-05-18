@@ -10,12 +10,14 @@ import { ElectricGrid } from './electric-grid/ElectricGrid'
 class Frame extends React.Component {
     render() {
         return (
-            // <Menu/>
-            <Switch>
-                <Route exact={true} path="/" component={ElectricGrid} />
-                <Redirect to="/" />
-            </Switch>
-            // <Footer/>
+            <div style={{ height: '100vh', padding: '24px' }}>
+                {/* <Menu/> */}
+                <Switch>
+                    <Route exact={true} path="/" component={ElectricGrid} />
+                    <Redirect to="/" />
+                </Switch>
+                {/* <Footer/> */}
+            </div>
         )
     }
 }

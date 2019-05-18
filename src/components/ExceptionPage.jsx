@@ -1,3 +1,4 @@
+import { Button, NonIdealState } from '@blueprintjs/core'
 import PropTypes from 'prop-types'
 import * as React from 'react'
 
@@ -7,92 +8,109 @@ const message = type => {
             return {
                 desc: "Unauthorized. Looks like you can't do that.",
                 title: '401',
-                type: '403'
+                icon: 'shield'
             }
         case 403:
             return {
                 desc:
                     'Your account has been deactivated. Please contact support.',
                 title: '403',
-                type: '403'
+                icon: 'outdated'
             }
         case 404:
             return {
                 desc: 'Uh oh...looks like you got lost.',
                 title: '404',
-                type: '404'
+                icon: 'zoom-out'
             }
         case 500:
             return {
                 desc: 'Something failed on our side. Please try again later.',
                 title: '500',
-                type: '500'
+                icon: 'error'
+            }
+        default:
+            return {
+                desc: 'Something failed on our side. Please try again later.',
+                title: '500',
+                icon: 'error'
             }
     }
 }
 
-const Actions = type => {
+const Actions = (type, history) => {
     switch (type) {
         case 401:
             return (
-                <button type="primary" href="/">
+                <Button icon="home" large onClick={() => history.push('/')}>
                     Home
-                </button>
+                </Button>
             )
         case 403:
             return (
-                <button type="primary" href="https://bigblue.co/contact">
+                <Button
+                    icon="envelope"
+                    large
+                    onClick={() => history.push('/contact')}
+                >
                     Contact Support
-                </button>
+                </Button>
             )
         case 404:
             return (
-                <button type="primary" href="/">
-                    Go back home
-                </button>
+                <Button icon="undo" large onClick={() => history.goBack()}>
+                    Go back
+                </Button>
             )
         case 500:
             return (
-                <button type="primary" href="/">
+                <Button icon="home" large onClick={() => history.push('/')}>
                     Home
-                </button>
+                </Button>
+            )
+        default:
+            return (
+                <Button icon="home" large onClick={() => history.push('/')}>
+                    Home
+                </Button>
             )
     }
 }
 
 const ExceptionPage = props => {
     const defaultMessage = message(props.type)
-    const desc = props.desc ? props.desc : defaultMessage.desc
+    const icon = props.icon ? props.icon : defaultMessage.icon
     const title = props.title ? props.title : defaultMessage.title
-    const actions = props.actions ? props.actions : Actions(props.type)
+    const desc = props.desc ? props.desc : defaultMessage.desc
+    const actions = props.actions
+        ? props.actions
+        : Actions(props.type, props.history)
     return (
         <div
+            className="bp3-dark bp3-card bp3-elevation-2 .modifier"
             style={{
                 display: 'flex',
                 flexDirection: 'column',
+                justifyContent: 'center',
                 height: '100vh'
             }}
         >
-            <div
-                style={{
-                    display: 'flex',
-                    flex: '1 1 auto',
-                    flexDirection: 'column',
-                    justifyContent: 'center'
-                }}
-            >
-                <h1>{title}</h1>
-                <h3>{desc}</h3>
-                {actions}
-            </div>
+            <NonIdealState
+                icon={icon}
+                title={title}
+                description={desc}
+                action={actions}
+            />
         </div>
     )
 }
 
 ExceptionPage.propTypes = {
+    history: PropTypes.any,
     actions: PropTypes.node,
-    desc: PropTypes.string,
     title: PropTypes.string,
+    desc: PropTypes.string,
+    icon: PropTypes.string,
     type: PropTypes.oneOf([401, 403, 404, 500])
 }
 

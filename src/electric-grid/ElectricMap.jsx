@@ -12,7 +12,16 @@ const LIGHT_SETTINGS = {
 }
 
 class ElectricMap extends React.Component {
-    static get defaultViewport() {
+    constructor(props) {
+        super(props)
+        this.state = {
+            viewState: {
+                ...ElectricMap.defaultViewState
+            }
+        }
+    }
+
+    static get defaultViewState() {
         return {
             latitude: 30,
             longitude: 34,
@@ -23,8 +32,15 @@ class ElectricMap extends React.Component {
         }
     }
 
+    onViewStateChange = ({ viewState }) => {
+        this.setState({
+            viewState: { ...this.state.viewState, ...viewState },
+            hoverInfo: null
+        })
+    }
+
     render() {
-        const { viewport, data, colorScale } = this.props
+        const { data, colorScale, onHover } = this.props
 
         if (!data) {
             return null
@@ -43,14 +59,18 @@ class ElectricMap extends React.Component {
                 if (f.properties.nodeType === 'city')
                     return (
                         50 *
-                        (viewport.maxZoom - viewport.zoom) *
-                        (viewport.maxZoom - viewport.zoom)
+                        (this.state.viewState.maxZoom -
+                            this.state.viewState.zoom) *
+                        (this.state.viewState.maxZoom -
+                            this.state.viewState.zoom)
                     )
                 else
                     return (
                         30 *
-                        (viewport.maxZoom - viewport.zoom) *
-                        (viewport.maxZoom - viewport.zoom)
+                        (this.state.viewState.maxZoom -
+                            this.state.viewState.zoom) *
+                        (this.state.viewState.maxZoom -
+                            this.state.viewState.zoom)
                     )
             },
             getFillColor: f => {
@@ -65,37 +85,44 @@ class ElectricMap extends React.Component {
                 if (f.properties.lineType === 'triple')
                     return (
                         30 *
-                        (viewport.maxZoom - viewport.zoom) *
-                        (viewport.maxZoom - viewport.zoom)
+                        (this.state.viewState.maxZoom -
+                            this.state.viewState.zoom) *
+                        (this.state.viewState.maxZoom -
+                            this.state.viewState.zoom)
                     )
                 else if (f.properties.lineType === 'double')
                     return (
                         20 *
-                        (viewport.maxZoom - viewport.zoom) *
-                        (viewport.maxZoom - viewport.zoom)
+                        (this.state.viewState.maxZoom -
+                            this.state.viewState.zoom) *
+                        (this.state.viewState.maxZoom -
+                            this.state.viewState.zoom)
                     )
                 else if (f.properties.lineType === 'single')
                     return (
                         10 *
-                        (viewport.maxZoom - viewport.zoom) *
-                        (viewport.maxZoom - viewport.zoom)
+                        (this.state.viewState.maxZoom -
+                            this.state.viewState.zoom) *
+                        (this.state.viewState.maxZoom -
+                            this.state.viewState.zoom)
                     )
             },
             getLineColor: f => colorScale(f.properties.transmissionPower / 600),
             lightSettings: LIGHT_SETTINGS,
-            pickable: Boolean(this.props.onHover),
-            onHover: this.props.onHover,
+            pickable: Boolean(onHover),
+            onHover,
             updateTriggers: {
-                getRadius: viewport.zoom,
-                getLineWidth: viewport.zoom
+                getRadius: this.state.viewState.zoom,
+                getLineWidth: this.state.viewState.zoom
             }
         })
 
         return (
             <DeckGL
-                {...viewport}
+                initialViewState={this.state.viewState}
+                onViewStateChange={this.onViewStateChange}
+                controller={true}
                 layers={[layer]}
-                onWebGLInitialized={this._initialize}
             />
         )
     }

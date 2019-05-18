@@ -9,7 +9,7 @@ import { Frame } from './Frame'
 const history = createBrowserHistory()
 
 const renderException = type => () => {
-    return <ExceptionPage type={type} />
+    return <ExceptionPage history={history} type={type} />
 }
 
 const Routes = () => {
